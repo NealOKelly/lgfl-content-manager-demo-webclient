@@ -1,0 +1,21 @@
+# https://git-scm.com/docs/gitignore
+# https://help.github.com/articles/ignoring-files
+# Example.gitignore files : https://github.com/github/gitignore
+_notes/
+/bower_components/
+/node_modules/
+/ADFS/
+/bin/
+/config/
+/HTML5TrapezeViewer/
+/images/
+/onstream/
+/ServiceStack_Logging_Log4Net_For_Copy/
+/Web.template.config
+/Web.Release.config
+/Web.Debug.config
+/web.config
+/tenant-sample.config
+/hprmServiceAPI.template.config
+/hprmServiceAPI.config
+/Global.asax
