@@ -1,0 +1,11 @@
+/*Inquiry User styles*/
+
+.InquiryUser #main-menu{
+	background: Crimson;
+}
+
+/*Administrator styles*/
+
+.Administrator #main-menu{
+	background: ForestGreen;
+}

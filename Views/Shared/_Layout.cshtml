@@ -32,16 +32,18 @@
     <meta http-equiv='pragma' content='no-cache'>
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1, maximum-scale=1" />
     
-
-
-    
     @HP.HPTRIM.Web.HPTRIMScriptManager.Render()
 
+	<link href="@Url.Content("~/Content/custom/css/role-specific-styles.css")" rel="stylesheet">
 
     @RenderBody()
 
 
     @RenderSection("scripts", required: false)
-    
-    
+ 
+	<script src="@Url.Content("~/Content/custom/js/role-specific-script.js")"></script>
+	<script src="@Url.Content("~/Content/custom/js/script.js")"></script>
+
+
+	
 </html>
