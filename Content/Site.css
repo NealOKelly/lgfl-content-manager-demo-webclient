@@ -7438,6 +7438,7 @@ div.as-spa {
 }
 div.as-spa-header {
   background-color: #0073E7;
+  
   z-index: 102 !important;
   min-width: 640px;
 }
