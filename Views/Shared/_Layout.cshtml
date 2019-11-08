@@ -5,7 +5,7 @@
 	<!-- BEGIN: Add custom LGfL <title> -->
 	<title>LGfL - Pupil Records System</title>
 	<!-- END: Add custom LGfL <title> -->
-    <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" />
+    <!--<link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" />-->
     <!--<link rel="apple-touch-icon" href="/ServiceApi/images/apple-touch-icon.png" />-->
 	<!-- BEGIN: Add custom LGfL favicon -->
 	<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
@@ -34,15 +34,28 @@
     
     @HP.HPTRIM.Web.HPTRIMScriptManager.Render()
 
+	<!-- BEGIN Add custom stylesheet -->
 	<link href="@Url.Content("~/Content/custom/css/role-specific-styles.css")" rel="stylesheet">
+	<!-- END Add custom stylesheet -->
+
+
+	<!-- BEGIN Add LGfL-specific stylesheets -->
+	<link href="~/Content/custom/html/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="~/Content/custom/html/css/custom-1.6.css?update=20190614" rel="stylesheet" type="text/css" />
+	<link href="~/Content/custom/html/css/jquery.countdown.css" rel="stylesheet" type="text/css" />
+	<link href="~/Content/custom/html/css/jquery.smartmenus.bootstrap.css" rel="stylesheet" type="text/css" />
+	<!-- END Add LGfL-specific stylesheets -->
+
 
     @RenderBody()
 
 
     @RenderSection("scripts", required: false)
- 
-	<script src="@Url.Content("~/Content/custom/js/role-specific-script.js")"></script>
-	<script src="@Url.Content("~/Content/custom/js/script.js")"></script>
+	<!--BEGIN Custom Scripts -->
+	<script src="~/Content/custom/js/role-specific-script.js"></script>
+	<script src="~/Content/custom/js/script2.js"></script>
+	<!--END Custom Scripts -->
+	
 
 
 	
