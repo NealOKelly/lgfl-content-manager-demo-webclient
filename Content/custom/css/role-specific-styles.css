@@ -44,3 +44,15 @@ div.as-spa-header{
 #main-menu{
 	background:  rgb(210,35,42);
 }
+
+.btn .button-primary{
+	background-color: rgb(210,35,42);
+}
+
+.button-primary{
+	background-color: rgb(210,35,42);
+}
+
+.btn.btn-flat.btn-primary, .btn.btn-icon.btn-primary{
+	color: rgb(210,35,42);
+}

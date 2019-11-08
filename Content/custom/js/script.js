@@ -1,4 +1,8 @@
 
+// add style sheet AFTER the in-built custom.css
+$("head link[rel='stylesheet']").last().after("<link rel='stylesheet' href='/ContentManager/Content/custom/css/role-specific-styles.css' type='text/css' media='screen'>");
+
+
 // pre-load custom-header HTML
 var customHeaderString;
 jQuery.get(window.location.pathname+"/Content/custom/html/custom-header.html").then(function(text, status, xhr){
@@ -47,5 +51,3 @@ $(document).ready(function(){
 	});
 });
 
-// add style sheet AFTER the in-built custom.css
-$("head link[rel='stylesheet']").last().after("<link rel='stylesheet' href='/ContentManager/Content/custom/css/role-specific-styles.css' type='text/css' media='screen'>");
