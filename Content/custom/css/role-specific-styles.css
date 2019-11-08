@@ -1,7 +1,7 @@
 /*Inquiry User styles*/
 
 .InquiryUser #main-menu{
-	background: Crimson;
+	background: rgb(210,35,42);
 }
 
 /*Administrator styles*/
@@ -10,6 +10,37 @@
 	background: ForestGreen;
 }
 
-.as-spa-header{
-	background-color: aqua;
+div.as-spa-header{
+	background-color: #222
+}
+
+
+#globalSearchPanel #globalSearch .search-input-container .search-control .global-search-finder-btn{
+	background-color: rgb(210,35,42);
+}
+
+
+#globalSearchPanel #globalSearch .search-input-container .search-control .global-search-btn{
+	background-color: rgb(210,35,42);
+}
+
+/* Hide hideous Content Manager logo*/
+.navbar-logofix{
+	display: none;
+}
+
+
+/* Hide options button anf help button in global serach bar */
+.global-search-options-wide{
+	display: none;
+}
+
+/* Hide User detail button. */
+#profile-user-details{
+	display: none;
+}
+
+
+#main-menu{
+	background:  rgb(210,35,42);
 }
