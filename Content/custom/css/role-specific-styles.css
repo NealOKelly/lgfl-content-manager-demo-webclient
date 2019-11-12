@@ -56,3 +56,7 @@ div.as-spa-header{
 .btn.btn-flat.btn-primary, .btn.btn-icon.btn-primary{
 	color: rgb(210,35,42);
 }
+
+.save-search-btn{
+	background-color: rgb(210,35,42);
+}
