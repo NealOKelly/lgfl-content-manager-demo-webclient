@@ -3,6 +3,14 @@
 $("head link[rel='stylesheet']").last().after("<link rel='stylesheet' href='/ContentManager/Content/custom/css/role-specific-styles.css' type='text/css' media='screen'>");
 
 
+// 
+
+$(document).ready(function(){
+$("body").prepend("<div id='splash-screen'><div class='loader'></div></div>");
+});
+
+
+
 // pre-load custom-header HTML
 var customHeaderString;
 jQuery.get(window.location.pathname+"/Content/custom/html/custom-header.html").then(function(text, status, xhr){
@@ -26,7 +34,7 @@ $(document).ready(function(){
 		if(currentlyAddingHeader!=false){	// prevents multiple instances of this code running at the same time
 			currentlyAddingHeader=true;
 			if (!$("#custom-header").length) {
-				$("body").prepend(customHeaderString);
+				$("#splash-screen").after(customHeaderString);
 			}
 		currentlyAddingHeader=false;
 		}
@@ -49,5 +57,5 @@ $(document).ready(function(){
 			currentlyAddingFooter=false;
 		}
 	});
-});
 
+});
