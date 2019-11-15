@@ -29,7 +29,7 @@ jQuery.get(window.location.pathname+"/Content/custom/html/custom-footer.html").t
 
 
 $(document).ready(function(){
-	$("body").bind("DOMSubtreeModified", function() {
+	$("body").on("DOMSubtreeModified", function() {
 		var currentlyAddingHeader;
 		if(currentlyAddingHeader!=false){	// prevents multiple instances of this code running at the same time
 			currentlyAddingHeader=true;
