@@ -1,6 +1,9 @@
 
-// add style sheet AFTER the in-built custom.css
+// add custom stylesheets AFTER the in-built custom.css
+
+$("head link[rel='stylesheet']").last().after("<link rel='stylesheet' href='/ContentManager/Content/custom/css/custom.css' type='text/css' media='screen'>");
 $("head link[rel='stylesheet']").last().after("<link rel='stylesheet' href='/ContentManager/Content/custom/css/role-specific-styles.css' type='text/css' media='screen'>");
+
 
 
 // 

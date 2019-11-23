@@ -1,0 +1,8 @@
+/* CSS Document */
+button.btn.global-search-finder-btn.dropdown-toggle.object_selector.pull-left:hover, button.btn.global-search-finder-btn.dropdown-toggle.object_selector.pull-left:focus {
+	border: 1px solid #fff !important;
+}
+
+button.btn.global-search-finder-btn.dropdown-toggle.option_selector.pull-left:hover, button.btn.global-search-finder-btn.dropdown-toggle.option_selector.pull-left:focus{
+	border: 1px solid #fff !important;
+}
