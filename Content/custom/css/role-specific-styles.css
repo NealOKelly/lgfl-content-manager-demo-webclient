@@ -89,7 +89,7 @@ div.as-spa-header{
 .loader {
   margin: auto;
   border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
+  border-top: 16px solid rgb(210,35,42); /* LGfL red */
   border-radius: 50%;
   width: 120px;
   height: 120px;
