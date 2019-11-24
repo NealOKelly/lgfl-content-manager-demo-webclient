@@ -65,7 +65,6 @@ div.as-spa-header{
 	top: -1px;
 }
 
-
 /* Buttons. */
 #globalSearchPanel #globalSearch .search-input-container .search-control .global-search-finder-btn{
 	background-color: rgb(210,35,42);
@@ -74,6 +73,7 @@ div.as-spa-header{
 
 #globalSearchPanel #globalSearch .search-input-container .search-control .global-search-btn{
 	background-color: rgb(210,35,42);
+	margin-top: -1px;
 }
 
 button.btn.global-search-finder-btn.dropdown-toggle.object_selector.pull-left:hover, button.btn.global-search-finder-btn.dropdown-toggle.object_selector.pull-left:focus {
