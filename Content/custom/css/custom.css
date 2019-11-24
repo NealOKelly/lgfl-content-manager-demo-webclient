@@ -1,8 +1,120 @@
-/* CSS Document */
+/* SPLASH SCREEN AND LOADER */
+#splash-screen {
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   position: fixed;
+   display: block;
+   /*opacity: 0.7;*/
+   background-color: white;
+   z-index: 99999;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  margin: auto;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid rgb(210,35,42); /* LGfL red */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* HIDE UNWANTED COMPONENTS */
+
+/* Hide hideous Content Manager logo*/
+.navbar-logofix{
+	display: none;
+}
+
+
+/* Hide options button anf help button in global serach bar */
+.global-search-options-wide{
+	display: none;
+}
+
+/* Hide User detail button. */
+#profile-user-details{
+	display: none;
+}
+
+
+
+
+/* LGfL STRYLING */
+/* Set heacder to LGfL "black" */
+div.as-spa-header{
+	background-color: #222;
+}
+
+
+.global-search-input-container{
+	top: -1px;
+}
+
+.object_selector{
+	top: -1px;
+}
+
+
+/* Buttons. */
+#globalSearchPanel #globalSearch .search-input-container .search-control .global-search-finder-btn{
+	background-color: rgb(210,35,42);
+}
+
+
+#globalSearchPanel #globalSearch .search-input-container .search-control .global-search-btn{
+	background-color: rgb(210,35,42);
+}
+
 button.btn.global-search-finder-btn.dropdown-toggle.object_selector.pull-left:hover, button.btn.global-search-finder-btn.dropdown-toggle.object_selector.pull-left:focus {
 	border: 1px solid #fff !important;
 }
 
 button.btn.global-search-finder-btn.dropdown-toggle.option_selector.pull-left:hover, button.btn.global-search-finder-btn.dropdown-toggle.option_selector.pull-left:focus{
 	border: 1px solid #fff !important;
+}
+
+.button-primary{
+	background-color: rgb(210,35,42);
+}
+
+.btn.btn-flat.btn-primary, .btn.btn-icon.btn-primary{
+	color: rgb(210,35,42);
+}
+
+#show-saved-searches {
+	background-color: rgb(210,35,42);
+}
+
+
+
+#main-menu li ul li{
+	border-left: 1px solid #fff;
+}
+
+.lgfl-footer{
+	background-color: #444 !important;	
+}
+
+.nav .nav-tabs {
+	background-color: chartreuse;
+}
+
+
+
+#custom-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 330px;            /* Footer height */
 }

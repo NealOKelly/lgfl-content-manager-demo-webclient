@@ -6,10 +6,10 @@ $("head link[rel='stylesheet']").last().after("<link rel='stylesheet' href='/Con
 
 
 
-// 
+// Create div for splash screen.
 
 $(document).ready(function(){
-$("body").prepend("<div id='splash-screen'><div class='loader'></div></div>");
+$("body").prepend("<div id='splash-screen'><div id='custom-loader' class='loader'></div></div>");
 });
 
 
@@ -33,11 +33,13 @@ jQuery.get(window.location.pathname+"/Content/custom/html/custom-footer.html").t
 
 $(document).ready(function(){
 	$("body").on("DOMSubtreeModified", function() {
+		var headerReady = false
 		var currentlyAddingHeader;
 		if(currentlyAddingHeader!=false){	// prevents multiple instances of this code running at the same time
 			currentlyAddingHeader=true;
 			if (!$("#custom-header").length) {
 				$("#splash-screen").after(customHeaderString);
+				headerReady = true;
 			}
 		currentlyAddingHeader=false;
 		}
@@ -55,10 +57,48 @@ $(document).ready(function(){
 		if(currentlyAddingFooter!=false){	// prevents multiple instances of this code running at the same time
 			currentlyAddingFooter=true;
 			if (!$("#custom-footer").length) {
-				$("#DashMainPanel_13").append(customFooterString);  // Attach the footer to DashMainPanel_13 as otherwise it is not visible. 
+				$("#bodyContent").after(customFooterString);  
 			}
 			currentlyAddingFooter=false;
 		}
+		
+		// Ressize bodyContent to enable #custom-footer to be visible
+		$("#bodyContent").css("height", "65%");
+		$("#DashboardPanel_23").css("height", "auto");
+	
+		
+		if(document.getElementById("globalSearchPanel") !== null){
+			$("#custom-loader").fadeOut(3000);
+			$("#splash-screen").fadeOut(5000);
+		}
+		
+		// remove footer when dashboard panel is not present
+		if(document.getElementById("MainObjectPanel_118") !== null){
+			$("#custom-footer").css("display", "none");
+		}
+		
+		
 	});
 
 });
+
+
+
+
+
+// override !important on inline styles.  Because only a wanker would put an !important on an inline style.
+
+
+// Remove unwanted left border for option_selector button.
+$(document).ready(function(){
+	$("body").on("DOMSubtreeModified", function() {
+		$(".option_selector").css("border-left", "none");
+		$(".option_selector").css("top", "-1px");
+	});
+
+});
+
+$(document).ready(function(){
+		$("#BodyPanel_12").children(":first").css("background-color", "green");
+});
+
