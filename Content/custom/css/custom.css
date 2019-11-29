@@ -48,6 +48,22 @@
 }
 
 
+div.div-profile-header > ul.dropdown-menu > li:nth-child(1){
+	border-bottom: 0 !important;
+}
+
+
+div.div-profile-header > ul.dropdown-menu > li:nth-child(2){
+	display: none !important;
+}
+
+div.div-profile-header > ul.dropdown-menu > li:nth-child(3){
+	display: none !important;
+}
+
+div.div-profile-header > ul.dropdown-menu > li:nth-child(4){
+	display: none !important;
+}
 
 
 /* LGfL STRYLING */
@@ -112,4 +128,18 @@ button.btn.global-search-finder-btn.dropdown-toggle.option_selector.pull-left:ho
   bottom: 0;
   width: 100%;
   height: auto;            /* Footer height */
+}
+
+
+/* DOCUMENT VIEWER */
+.modal-full-header{
+	background-color: #222;
+}
+
+#DocumentViewerPanel_3{
+	background-color: #222 !important;
+}
+
+.btn-revision{
+	background-color: #222 !important;
 }

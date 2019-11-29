@@ -9,16 +9,16 @@
 	display: none;
 }
 
-/* object_selector */
+/* object_selector 
 .InquiryUser .btn-group:first-child {
 	display: none;
-}
+}*/
 
 
-/* options_selector  */
+/* options_selector  
 .InquiryUser .btn-group:nth-child(2) {
 	display: none;
-}
+}*/
 
 .InquiryUser .global-search-input-container{
 	margin-left: 200px;
@@ -28,10 +28,10 @@
 	display: none;
 }
 
-/* Dasboard items */
+/* Dasboard items 
 .InquiryUser #DashboardPanel_23{
 	display: none;
-}
+}*/
 
 
 /* tabs */

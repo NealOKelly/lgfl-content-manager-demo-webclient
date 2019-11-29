@@ -1,104 +1,66 @@
-
-// add custom stylesheets AFTER the in-built custom.css
-
-$("head link[rel='stylesheet']").last().after("<link rel='stylesheet' href='/ContentManager/Content/custom/css/custom.css' type='text/css' media='screen'>");
-$("head link[rel='stylesheet']").last().after("<link rel='stylesheet' href='/ContentManager/Content/custom/css/role-specific-styles.css' type='text/css' media='screen'>");
-
-
-
-// Create div for splash screen.
-
 $(document).ready(function(){
-$("body").prepend("<div id='splash-screen'><div id='custom-loader' class='loader'></div></div>");
-});
+	// Select the node that will be observed for mutations
+	//const targetNode = document.getElementById('bodyContent');
+	const targetNode = document.getElementById('bodyContent');
 
+	// Options for the observer (which mutations to observe)
+	const config = { attributes: true, childList: true, subtree: true };
 
+	// Callback function to execute when mutations are observed
+	const callback = function(mutationsList, observer) {
+		// Use traditional 'for loops' for IE 11
+		for(let mutation of mutationsList) {
+			if (mutation.type === 'childList') {
 
-// pre-load custom-header HTML
-var customHeaderString;
-jQuery.get(window.location.pathname+"/Content/custom/html/custom-header.html").then(function(text, status, xhr){
-	$(document).ready(function(){
-		customHeaderString=text;
-	});
-})
+					// set #set #splash-screen to display: none; when dashboard panel has loaded.
+					if($("#DashMainPanel_13").length){
+					$("#custom-loader").fadeOut(3000);
+					$("#splash-screen").fadeOut(5000);
+						//alert("The dash panel has loaded.");
+					}
 
-// pre-load custom-footer HTML
-var customFooterString;
-jQuery.get(window.location.pathname+"/Content/custom/html/custom-footer.html").then(function(text, status, xhr){
-	$(document).ready(function(){
-		customFooterString=text;
-	});
-})
-
-
-$(document).ready(function(){
-	$("body").on("DOMSubtreeModified", function() {
-		var headerReady = false
-		var currentlyAddingHeader;
-		if(currentlyAddingHeader!=false){	// prevents multiple instances of this code running at the same time
-			currentlyAddingHeader=true;
-			if (!$("#custom-header").length) {
-				$("#splash-screen").after(customHeaderString);
-				headerReady = true;
 			}
-		currentlyAddingHeader=false;
+			else if (mutation.type === 'attributes') {
+				console.log('The ' + mutation.attributeName + ' attribute was modified.');
+			}
 		}
+	};
 
-		///We now need to move everything around by the height of the header.
-		$("#custom-header").ready(function(){
+	// Create an observer instance linked to the callback function
+	const observer = new MutationObserver(callback);
+
+	// Start observing the target node for configured mutations
+	observer.observe(targetNode, config);
+
+
+	// Later, you can stop observing
+	//observer.disconnect();
+
+	// add splsh screen
+	$("body").prepend("<div id='splash-screen'><div id='custom-loader' class='loader'></div></div>");
+	});
+
+	// add custom stylesheets AFTER the in-built custom.css
+	$("head link[rel='stylesheet']").last().after("<link rel='stylesheet' href='/ContentManager/Content/custom/css/custom.css' type='text/css' media='screen'>");
+	$("head link[rel='stylesheet']").last().after("<link rel='stylesheet' href='/ContentManager/Content/custom/css/role-specific-styles.css' type='text/css' media='screen'>");
+
+
+	// Add customheader html
+	jQuery.get(window.location.pathname+"Content/custom/html/custom-header.html").then(function(text, status, xhr){
+		$("#splash-screen").after(text);
+		//$("body").prepend(text);
+	}).then(function(){
+			// we really only need to do this once - consider rewriting
 			var headHeight = $("#custom-header").outerHeight(true); //this is the height of the header
 			var menuHeight = 56; //this is set by other CSS - it doesn't change
 			var topHeight = headHeight + menuHeight + 1; //they currently move it by 57, so 56+1, so we add 1 here
 			$("head").append("<style>#BodyPanel_12 {top:"+topHeight+"px;} .as-spa-header {top:"+headHeight+"px;}div.as-spa-dash-main-secondary{height:auto;}"); 
-			//above adds the style ready for the page to finish loading - it also removes the height 100% from the wide screen version of the secondaries, so the footer is visible.
-		});
 		
-		var currentlyAddingFooter;
-		if(currentlyAddingFooter!=false){	// prevents multiple instances of this code running at the same time
-			currentlyAddingFooter=true;
-			if (!$("#custom-footer").length) {
-				$("#bodyContent").after(customFooterString);  
-			}
-			currentlyAddingFooter=false;
-		}
-		
-		// Ressize bodyContent to enable #custom-footer to be visible
-		$("#bodyContent").css("height", "65%");
-		$("#DashboardPanel_23").css("height", "auto");
-	
-		
-		if(document.getElementById("globalSearchPanel") !== null){
-			$("#custom-loader").fadeOut(3000);
-			$("#splash-screen").fadeOut(5000);
-		}
-		
-		// remove footer when dashboard panel is not present
-		if(document.getElementById("MainObjectPanel_118") !== null){
-			$("#custom-footer").css("display", "none");
-		}
-		
-		
-	});
+		})
 
-});
+	// Add footer
+	jQuery.get(window.location.pathname+"Content/custom/html/custom-footer.html").then(function(text, status, xhr){
+		$("#bodyContent").after(text);
+	})
 
-
-
-
-
-// override !important on inline styles.  Because only a wanker would put an !important on an inline style.
-
-
-// Remove unwanted left border for option_selector button.
-$(document).ready(function(){
-	$("body").on("DOMSubtreeModified", function() {
-		$(".option_selector").css("border-left", "none");
-		$(".option_selector").css("top", "-1px");
-	});
-
-});
-
-$(document).ready(function(){
-		$("#BodyPanel_12").children(":first").css("background-color", "green");
-});
 
