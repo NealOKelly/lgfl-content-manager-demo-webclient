@@ -61,7 +61,7 @@
 							
 							                            <div class="btn-group" style="float:left">
                                 <!-- ko if: smallFormSearchActions().length > 0 || smallFilterSortActions().length > 0 -->
-                                <button type="button" class="btn global-search-finder-btn dropdown-toggle option_selector pull-left" data-toggle="dropdown" aria-expanded="false" data-bind="attr:{title: HP.HPTRIM.Messages.web_options }" style="text-transform:uppercase;box-shadow:none;border-left:1px solid #FFFFFF   !important;margin-right:3px;margin-bottom:1px;">
+                                <button type="button" style="display: none;" class="btn global-search-finder-btn dropdown-toggle option_selector pull-left" data-toggle="dropdown" aria-expanded="false" data-bind="attr:{title: HP.HPTRIM.Messages.web_options }" style="text-transform:uppercase;box-shadow:none;border-left:1px solid #FFFFFF   !important;margin-right:3px;margin-bottom:1px;">
                                     <span aria-expanded="false" id="option_selector" data-bind="text: HP.HPTRIM.Messages.web_options"></span>
                                     <span data-bind="attr:{title: HP.HPTRIM.Messages.web_options}" class="caret" style="vertical-align: super; margin-left: 5px;"></span>
                                 </button>
@@ -128,7 +128,7 @@
                         <!-- ko as_panel: filterSortDropdown --> <!-- /ko -->
                         <!-- /ko -->
 
-                        <div class="global-search-input-container" style="display: inline-block">
+                        <div class="global-search-input-container" style="display: inline-block;">
                             <input type="search" id="global-search-input" autocomplete="off"
                                    data-bind="value: searchField, enterKey: onSearchEnter, valueUpdate:'afterkeydown',
                                              attr:{'placeholder': HP.HPTRIM.Messages.web_enterSearchQuery, title: HP.HPTRIM.Messages.web_enterSearchQuery, 'aria-label': HP.HPTRIM.Messages.web_enterSearchQuery, class: searchFieldClass() }"
