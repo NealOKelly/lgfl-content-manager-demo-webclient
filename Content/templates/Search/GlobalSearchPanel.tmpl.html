@@ -33,7 +33,33 @@
                                     <!-- /ko -->
                                 </ul>
                             </div>
-                            <div class="btn-group" style="float:left">
+
+
+                            <div class="global-search-input-container" style="float:left;">
+                                <input type="search" id="global-search-input" autocomplete="off"
+                                       data-bind="value: searchField, enterKey: onSearchEnter, valueUpdate:'afterkeydown',
+                                             attr:{'placeholder': HP.HPTRIM.Messages.web_enterSearchQuery, title: HP.HPTRIM.Messages.web_enterSearchQuery, 'aria-label': HP.HPTRIM.Messages.web_enterSearchQuery, class: searchFieldClass() }"
+                                       data-toggle="dropdown" />
+
+                                <!-- ko if: currentSearchHistory().length > 0 -->
+                                <ul id="search-history-container" class="dropdown-menu" role="menu">
+                                    <!-- ko foreach: currentSearchHistory -->
+                                    <li>
+                                        <div class="pull-right" style="padding-right: 8px"><span style="padding-left: 3px; width:12px; height:12px; cursor: pointer;" data-bind="click: function() { $data.removeHandler() }, enterKey:function() { $data.removeHandler() }, clickBubble:false, attr: {title: HP.HPTRIM.Messages.web_remove}" tabindex="0" class="panelclose-grey" aria-hidden="true"></span></div>
+                                        <div class="overflowEllipsis">
+                                            <a href="#" data-bind="click: function() { $data.actionHandler() }, text: $data.friendlyString, attr: {'title': $data.friendlyString}"></a>
+                                        </div>
+                                    </li>
+                                    <!-- /ko -->
+                                </ul>
+                                <!-- /ko -->
+                            </div>
+                            <!-- Pull right will bring it across on the same line as the search field. -->
+                            <button type="submit" class="btn button-primary global-search-btn " data-bind="click: executeSearch, clickBubble: false, attr: {title: HP.HPTRIM.Messages.web_search , 'aria-label': HP.HPTRIM.Messages.web_search }" style="box-shadow:none;min-width:10px;">
+                                <div class="search_24" style="height: 24px; width: 24px;" data-bind="attr: {title: HP.HPTRIM.Messages.web_search , 'aria-label': HP.HPTRIM.Messages.web_search }"></div>
+                            </button>
+							
+							                            <div class="btn-group" style="float:left">
                                 <!-- ko if: smallFormSearchActions().length > 0 || smallFilterSortActions().length > 0 -->
                                 <button type="button" class="btn global-search-finder-btn dropdown-toggle option_selector pull-left" data-toggle="dropdown" aria-expanded="false" data-bind="attr:{title: HP.HPTRIM.Messages.web_options }" style="text-transform:uppercase;box-shadow:none;border-left:1px solid #FFFFFF   !important;margin-right:3px;margin-bottom:1px;">
                                     <span aria-expanded="false" id="option_selector" data-bind="text: HP.HPTRIM.Messages.web_options"></span>
@@ -66,30 +92,11 @@
                                 </ul>
                                 <!-- /ko -->
                             </div>
-
-                            <div class="global-search-input-container" style="float:left;">
-                                <input type="search" id="global-search-input" autocomplete="off"
-                                       data-bind="value: searchField, enterKey: onSearchEnter, valueUpdate:'afterkeydown',
-                                             attr:{'placeholder': HP.HPTRIM.Messages.web_enterSearchQuery, title: HP.HPTRIM.Messages.web_enterSearchQuery, 'aria-label': HP.HPTRIM.Messages.web_enterSearchQuery, class: searchFieldClass() }"
-                                       data-toggle="dropdown" />
-
-                                <!-- ko if: currentSearchHistory().length > 0 -->
-                                <ul id="search-history-container" class="dropdown-menu" role="menu">
-                                    <!-- ko foreach: currentSearchHistory -->
-                                    <li>
-                                        <div class="pull-right" style="padding-right: 8px"><span style="padding-left: 3px; width:12px; height:12px; cursor: pointer;" data-bind="click: function() { $data.removeHandler() }, enterKey:function() { $data.removeHandler() }, clickBubble:false, attr: {title: HP.HPTRIM.Messages.web_remove}" tabindex="0" class="panelclose-grey" aria-hidden="true"></span></div>
-                                        <div class="overflowEllipsis">
-                                            <a href="#" data-bind="click: function() { $data.actionHandler() }, text: $data.friendlyString, attr: {'title': $data.friendlyString}"></a>
-                                        </div>
-                                    </li>
-                                    <!-- /ko -->
-                                </ul>
-                                <!-- /ko -->
-                            </div>
-                            <!-- Pull right will bring it across on the same line as the search field. -->
-                            <button type="submit" class="btn button-primary global-search-btn " data-bind="click: executeSearch, clickBubble: false, attr: {title: HP.HPTRIM.Messages.web_search , 'aria-label': HP.HPTRIM.Messages.web_search }" style="box-shadow:none;min-width:10px;">
-                                <div class="search_24" style="height: 24px; width: 24px;" data-bind="attr: {title: HP.HPTRIM.Messages.web_search , 'aria-label': HP.HPTRIM.Messages.web_search }"></div>
-                            </button>
+							
+							
+							
+							
+							
                             <!-- ko if: saveSearchButtonEnabled() -->
                             <button type="button" style="border-left:1px solid #8b8b8b; border-right:1px solid #8b8b8b;" id="show-saved-searches" data-bind="click: saveSearch, attr:{title: HP.HPTRIM.Messages.web_save,'aria-label': HP.HPTRIM.Messages.web_save, class: 'btn save-search-btn if-narrow-less-margin'}">
                                 <span data-bind="attr:{title: HP.HPTRIM.Messages.web_save,'aria-label': HP.HPTRIM.Messages.web_save }, text: HP.HPTRIM.Messages.web_save"></span>
