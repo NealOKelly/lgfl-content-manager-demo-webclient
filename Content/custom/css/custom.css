@@ -17,7 +17,7 @@
 .loader {
   margin: auto;
   border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid rgb(210,35,42); /* LGfL red */
+  border-top: 16px solid #33cccc;
   border-radius: 50%;
   width: 120px;
   height: 120px;
@@ -29,13 +29,91 @@
   100% { transform: rotate(360deg); }
 }
 
-/* HIDE UNWANTED COMPONENTS */
+/* END - SPLASH SCREEN AND LOADER */
 
-/* Hide hideous Content Manager logo*/
-.navbar-logofix{
-	display: none;
+/* CUSTOMISATIONS FOR UNIVERAL SEARCH */
+
+/* Hide standard header panel */
+
+
+#rm4ed-global-search-input {
+  width: 95%;
+  border: none;
+  border-radius: 0 0 0 0;
+  max-width: inherit;
+  padding: 0 25px 0 20px;
+  height: 32px;
 }
 
+
+
+/* END - CUSTOMISATION FOR UNIVERSAL SEARCH */
+
+#globalSearchPanel{
+	background-color: #000033 !important;
+}
+
+#main-menu{
+	background-color: #33cccc !important;
+}
+
+
+.object_selector{
+	background-color: #000033 !important;
+}
+
+button.btn.global-search-finder-btn.dropdown-toggle.object_selector.pull-left:hover,
+button.btn.global-search-finder-btn.dropdown-toggle.object_selector.pull-left:focus {
+  border: 1px solid #33cccc !important;
+}
+
+
+.option_selector{
+	background-color: #000033 !important;
+}
+
+button.btn.global-search-finder-btn.dropdown-toggle.option_selector.pull-left:hover,
+button.btn.global-search-finder-btn.dropdown-toggle.option_selector.pull-left:focus {
+  border: 1px solid #33cccc !important;
+}
+
+.global-search-btn{
+	background-color: #000033 !important;
+}
+
+#show-saved-searches{
+	background-color: #33cccc !important;
+}
+
+#profile-user-details{
+	background-color: #33cccc !important;
+}
+
+.dashboard-container-header .h4{
+	border-bottom: none;
+}
+
+.dashboard-container-header .h4:hover{
+	color: #33cccc;
+	border-bottom: #33cccc;
+}
+
+
+.spn-plus-icon{
+	color: #33cccc;
+}
+.spn-title{
+	color: #33cccc;
+}
+
+
+/* HIDE UNWANTED COMPONENTS */
+
+
+
+.btn .global-search-finder-btn .dropdown-toggle .object_selector .pull-left{
+	display: none !important;
+}
 
 /* Hide options button anf help button in global serach bar */
 .global-search-options-wide{
@@ -51,26 +129,25 @@
 div.div-profile-header > ul.dropdown-menu > li:nth-child(1){
 	border-bottom: 0 !important;
 }
-
-
 div.div-profile-header > ul.dropdown-menu > li:nth-child(2){
 	display: none !important;
 }
-
 div.div-profile-header > ul.dropdown-menu > li:nth-child(3){
 	display: none !important;
 }
-
 div.div-profile-header > ul.dropdown-menu > li:nth-child(4){
 	display: none !important;
 }
 
 
-/* LGfL STRYLING */
-/* Set heacder to LGfL "black" */
-div.as-spa-header{
-	background-color: #222;
-}
+
+
+
+
+
+
+
+
 
 
 .global-search-input-container{
@@ -81,24 +158,7 @@ div.as-spa-header{
 	top: -1px;
 }
 
-/* Buttons. */
-#globalSearchPanel #globalSearch .search-input-container .search-control .global-search-finder-btn{
-	background-color: rgb(210,35,42);
-}
 
-
-#globalSearchPanel #globalSearch .search-input-container .search-control .global-search-btn{
-	background-color: rgb(210,35,42);
-	margin-top: -1px;
-}
-
-button.btn.global-search-finder-btn.dropdown-toggle.object_selector.pull-left:hover, button.btn.global-search-finder-btn.dropdown-toggle.object_selector.pull-left:focus {
-	border: 1px solid #fff !important;
-}
-
-button.btn.global-search-finder-btn.dropdown-toggle.option_selector.pull-left:hover, button.btn.global-search-finder-btn.dropdown-toggle.option_selector.pull-left:focus{
-	border: 1px solid #fff !important;
-}
 
 .button-primary{
 	background-color: rgb(210,35,42);
@@ -143,3 +203,10 @@ button.btn.global-search-finder-btn.dropdown-toggle.option_selector.pull-left:ho
 .btn-revision{
 	background-color: #222 !important;
 }
+
+#dropdownMenu1{
+	display: none;
+}
+
+
+
