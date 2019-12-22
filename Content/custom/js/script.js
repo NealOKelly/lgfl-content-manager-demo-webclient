@@ -31,7 +31,10 @@ $(document).ready(function(){
 				$("button[title='Record']").after("<div id='rm4ed-phantom-object-selector' style='width: 96px; height: 32px; padding-left: 10px; padding-right: 10px;'></div>");
 				};
 				
-
+				// hide unwanted items from the option selector
+				$("#searchBuilder").css("display", "none");
+				$("a[title='Filter']").parent().css("display", "none"); // this is different because there is a duplicate id.
+				$("#options").css("display", "none");
 				
 				
 				// the rm4ed universal search input box and remove hide the standard search query box.
@@ -87,22 +90,6 @@ $(document).ready(function(){
 		// Use traditional 'for loops' for IE 11
 		for(let mutation of mutationsList) {
 			if (mutation.type === 'childList') {
-				
-				if($("div[title='Schools Document']").length){
-				$("div[title='Schools Document']").css("background-color", "lime");
-				
-					if($('#rm4ed-folders-only-checkbox').is(":checked")){
-						$("div[title='Schools Document']").css("background-color", "red");	
-						//$("div[title='Schools Document'] > div > div > input").prop('checked', false);
-						$("div[title='Schools Document']").find("input").prop('checked', false);
-						$("div[title='Schools Document']").find("input").trigger("change");
-						$("div[id*='overlay_SearchRecordTypeFilterModal']").find("button[title='OK']").css("background-color", "lime");
-						
-						
-						//overlay_SearchRecordTypeFilterModal_1242
-					}
-				
-				}
 				
 			}
 			else if (mutation.type === 'attributes') {
@@ -194,27 +181,14 @@ $(document).ready(function(){
    	});
 	
 
-			
-	$(document).on('change', "#rm4ed-folders-only-checkbox", function (){
-		// function
-		//alert($('#rm4ed-folders-only-checkbox').is(":checked"));
-		if($('#rm4ed-folders-only-checkbox').is(":checked")){
-			//alert("The checkbox is true");
-			//$('#field116').prop('checked', false);
-			//$("div:contains('Schools Document')").css("background-color", "lime");
-			//recordTypeArray.push(recordTypeFilterItem);
-
-		}
-		else{
-			alert("The checkbox is false");
-			//$('#test-checkbox').prop('checked', true);
-		}
+	// "click" event for New Record button
+	$(document).on('click', "#custom-new-record-button", function (){
+		$("a[title='New Record']").trigger("click");
 	})
-	
-		$(document).on('click', "#custom-new-record-button", function (){
-			$("a[title='New Record']").trigger("click");
-			})
 		
-		
+	// "click" event for Advanced Search button - Open SearchForm_1 (everything else is disabled)
+	$(document).on('click', "#rm4ed-advanced-search", function (){
+		$("#SearchForm_1 > a").trigger("click");
+	})
 		
 });
