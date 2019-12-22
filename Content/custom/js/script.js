@@ -20,7 +20,7 @@ $(document).ready(function(){
 				
 				if(!$("#custom-new-record-button").length){
 					//alert($("#custom-new-record-button").length);
-					$(".Searchbar-logo-toggle").append('<div id="custom-new-record-button" class="navbar-product-name navbar-text"><a><img style="margin-left:-22px; padding:5px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAT0lEQVQ4y+2RSw4AMAQFadz/yrqSCNX0se3sNIxPiYawD1RVnwuZOQluRHkSVN0tMebY+0K6e5mx0BWiRJCDnZDu8eAVKr6gKfA/MZ5gzAYUNRwmN05++wAAAABJRU5ErkJggg=="><span tabindex="0" title="New Record" style="font-weight:bold" aria-label="New Record">NEW RECORD</span></a></div>');
+					$(".Searchbar-logo-toggle").append('<div id="custom-new-record-button" class="rm4ed-new-record-button navbar-text"><a><img style="margin-left:-22px; padding:5px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAT0lEQVQ4y+2RSw4AMAQFadz/yrqSCNX0se3sNIxPiYawD1RVnwuZOQluRHkSVN0tMebY+0K6e5mx0BWiRJCDnZDu8eAVKr6gKfA/MZ5gzAYUNRwmN05++wAAAABJRU5ErkJggg=="><span tabindex="0" title="New Record" style="font-weight:bold" aria-label="New Record">NEW RECORD</span></a></div>');
 					
 				};
 				
@@ -185,10 +185,14 @@ $(document).ready(function(){
 				})
    	});
 	
-
-	// "click" event for New Record button
+	// "click" event for hprm-dynamic-search-modal Record button
 	$(document).on('click', "#custom-new-record-button", function (){
 		$("a[title='New Record']").trigger("click");
+	})
+
+	// "click" event for logo (got to home)
+	$(document).on('click', ".navbar-logofix", function (){
+		$("div.tabbable").find("a[title='Home']").trigger("click");
 	})
 		
 	// "click" event for Advanced Search button - Open Search

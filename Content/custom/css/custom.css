@@ -108,8 +108,15 @@ button.btn.global-search-finder-btn.dropdown-toggle.option_selector.pull-left:fo
 
 
 /* HIDE UNWANTED COMPONENTS */
+/* Hide main menu */
+#dropdownMenu1{
+	display: none;
+}
 
-
+/*This button replaces the main menu*/
+#custom-new-record-button > span{
+	color: white;
+}
 
 .btn .global-search-finder-btn .dropdown-toggle .object_selector .pull-left{
 	display: none !important;
@@ -139,8 +146,11 @@ div.div-profile-header > ul.dropdown-menu > li:nth-child(4){
 	display: none !important;
 }
 
-
-
+/* Hide tabbing mechanism */
+div.as-spa-body>div>div.tabbable {
+	
+	display: none;
+}
 
 
 
@@ -204,9 +214,7 @@ div.div-profile-header > ul.dropdown-menu > li:nth-child(4){
 	background-color: #222 !important;
 }
 
-#dropdownMenu1{
-	display: none;
-}
+
 
 
 
