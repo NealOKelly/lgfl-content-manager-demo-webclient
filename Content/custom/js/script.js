@@ -197,6 +197,7 @@ $(document).ready(function(){
 		
 	// "click" event for Advanced Search button - Open Search
 	$(document).on('click', "#rm4ed-advanced-search", function (){
+		$("a[title='Record']").trigger("click");
 		$("#SearchForm_1 > a").trigger("click");
 	})
 		
