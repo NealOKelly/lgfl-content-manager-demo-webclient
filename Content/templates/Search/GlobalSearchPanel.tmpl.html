@@ -59,7 +59,11 @@
                                 <div class="search_24" style="height: 24px; width: 24px;" data-bind="attr: {title: HP.HPTRIM.Messages.web_search , 'aria-label': HP.HPTRIM.Messages.web_search }"></div>
                             </button>
 							
-							                            <div class="btn-group" style="float:left">
+							<div class="btn-group" style="float:left">
+								<button type="button" class="btn global-search-finder-btn option_selector pull-left" style="text-transform:uppercase;box-shadow:none;margin-right:3px;margin-bottom:1px;">
+                                    <span id="rm4ed-option_selector">Advanced</span>
+                                    
+                                </button>
                                 <!-- ko if: smallFormSearchActions().length > 0 || smallFilterSortActions().length > 0 -->
                                 <button type="button" style="display: none;" class="btn global-search-finder-btn dropdown-toggle option_selector pull-left" data-toggle="dropdown" aria-expanded="false" data-bind="attr:{title: HP.HPTRIM.Messages.web_options }" style="text-transform:uppercase;box-shadow:none;border-left:1px solid #FFFFFF   !important;margin-right:3px;margin-bottom:1px;">
                                     <span aria-expanded="false" id="option_selector" data-bind="text: HP.HPTRIM.Messages.web_options"></span>
