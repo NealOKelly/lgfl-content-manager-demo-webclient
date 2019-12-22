@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 	// CREATE OBSERVER FOR CHANGES TO THE #bodyContent <DIV>
 	// Callback function to execute when mutations are observed
-	const callback = function(mutationsList, observer) {
+	const bodyContentObserverCallback = function(mutationsList, bodyContentObserver) {
 		// Use traditional 'for loops' for IE 11
 		for(let mutation of mutationsList) {
 			if (mutation.type === 'childList') {
@@ -72,10 +72,10 @@ $(document).ready(function(){
 	};
 
 	// Create an observer instance linked to the callback function
-	const observer = new MutationObserver(callback);
+	const bodyContentObserver = new MutationObserver(bodyContentObserverCallback);
 
 	// Start observing the target node for configured mutations
-	observer.observe(document.getElementById('bodyContent'), config);
+	bodyContentObserver.observe(document.getElementById('bodyContent'), config);
 
 
 	// Later, you can stop observing
@@ -83,6 +83,40 @@ $(document).ready(function(){
 	
 	// END -- OBSERVER FOR #bodyContent
 
+		
+	// CREATE OBSERVER FOR CHANGES TO THE #hprm-dynamic-search-modal <DIV>
+	// Callback function to execute when mutations are observed
+	const hprmDynamicModalObserverCallback = function(mutationsList, hprmDynamicModalObserver) {
+		// Use traditional 'for loops' for IE 11
+		for(let mutation of mutationsList) {
+			if (mutation.type === 'childList') {
+				
+				// hide "Filter" tab from search form.
+				if($("a[href='#formSearchFilter']").length){
+					$("a[href='#formSearchFilter']").css("display", "none");
+				}
+				
+			}
+			else if (mutation.type === 'attributes') {
+			console.log('The ' + mutation.attributeName + ' attribute was modified.');
+			}
+		}
+	};
+
+	// Create an observer instance linked to the callback function
+	const hprmDynamicModalObserver = new MutationObserver(hprmDynamicModalObserverCallback);
+
+	// Start observing the target node for configured mutations
+	hprmDynamicModalObserver.observe(document.getElementById('hprm-dynamic-modal'), config);
+
+
+	// Later, you can stop observing
+	//hprmDynamicModalObserver.disconnect();
+	
+	// END -- OBSERVER FOR  #hprm-dynamic-modal
+	
+
+	
 	
 	// add splsh screen
 	$("body").prepend("<div id='splash-screen'><div id='custom-loader' class='loader'></div></div>");
@@ -157,7 +191,7 @@ $(document).ready(function(){
 		$("a[title='New Record']").trigger("click");
 	})
 		
-	// "click" event for Advanced Search button - Open SearchForm_1 (everything else is disabled)
+	// "click" event for Advanced Search button - Open Search
 	$(document).on('click', "#rm4ed-advanced-search", function (){
 		$("#SearchForm_1 > a").trigger("click");
 	})
