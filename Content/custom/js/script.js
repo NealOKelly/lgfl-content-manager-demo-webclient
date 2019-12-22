@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 	// CREATE OBSERVER FOR CHANGES TO THE #bodyContent <DIV>
 	// Callback function to execute when mutations are observed
-	const bodyContentObserverCallback = function(mutationsList, bodyContentObserver) {
+	const callback = function(mutationsList, observer) {
 		// Use traditional 'for loops' for IE 11
 		for(let mutation of mutationsList) {
 			if (mutation.type === 'childList') {
@@ -72,10 +72,10 @@ $(document).ready(function(){
 	};
 
 	// Create an observer instance linked to the callback function
-	const bodyContentObserver = new MutationObserver(bodyContentObserverCallback);
+	const observer = new MutationObserver(callback);
 
 	// Start observing the target node for configured mutations
-	bodyContentObserver.observe(document.getElementById('bodyContent'), config);
+	observer.observe(document.getElementById('bodyContent'), config);
 
 
 	// Later, you can stop observing
@@ -83,35 +83,6 @@ $(document).ready(function(){
 	
 	// END -- OBSERVER FOR #bodyContent
 
-		
-	// CREATE OBSERVER FOR CHANGES TO THE #hprm-dynamic-search-modal <DIV>
-	// Callback function to execute when mutations are observed
-	const hprmDynamicSearchModalObserverCallback = function(mutationsList, hprmDynamicSearchModalObserver) {
-		// Use traditional 'for loops' for IE 11
-		for(let mutation of mutationsList) {
-			if (mutation.type === 'childList') {
-				
-			}
-			else if (mutation.type === 'attributes') {
-			console.log('The ' + mutation.attributeName + ' attribute was modified.');
-			}
-		}
-	};
-
-	// Create an observer instance linked to the callback function
-	const hprmDynamicSearchModalObserver = new MutationObserver(hprmDynamicSearchModalObserverCallback);
-
-	// Start observing the target node for configured mutations
-	hprmDynamicSearchModalObserver.observe(document.getElementById('hprm-dynamic-search-modal'), config);
-
-
-	// Later, you can stop observing
-	//hprmDynamicSearchModalObserver.disconnect();
-	
-	// END -- OBSERVER FOR  #hprm-dynamic-search-modal
-	
-
-	
 	
 	// add splsh screen
 	$("body").prepend("<div id='splash-screen'><div id='custom-loader' class='loader'></div></div>");
