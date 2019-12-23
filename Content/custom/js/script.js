@@ -1,90 +1,68 @@
+
+
+// Options for the observers (which mutations to observe)
+const config = { attributes: true, childList: true, subtree: true };
+
+function addObserverIfDesiredNodeAvailable(desiredNode, observerName) {
+	if(!desiredNode) {
+		//The node we need does not exist yet.
+		//Wait 500ms and try again
+		window.setTimeout(addObserverIfDesiredNodeAvailable,500);
+		return;
+	}
+	observerName.observe(desiredNode, config);
+};
+
+
 $(document).ready(function(){
 
-	
-	// Options for the observers (which mutations to observe)
-	const config = { attributes: true, childList: true, subtree: true };
-
-	// CREATE OBSERVER FOR CHANGES TO THE #bodyContent <DIV>
-	// Callback function to execute when mutations are observed
+	// Callback function to execute when mutations to #bodyContent are observed
 	const bodyContentObserverCallback = function(mutationsList, bodyContentObserver) {
 		// Use traditional 'for loops' for IE 11
 		for(let mutation of mutationsList) {
 			if (mutation.type === 'childList') {
 
-				// set #set #splash-screen to display: none; when dashboard panel has loaded.
-				//if($("#DashMainPanel_13").length){
+				// Fade out splash screen
 				$("#custom-loader").fadeOut(3000);
 				$("#splash-screen").fadeOut(5000);
-
-				//}
 				
 				if(!$("#custom-new-record-button").length){
-					//alert($("#custom-new-record-button").length);
-					$(".Searchbar-logo-toggle").append('<div id="custom-new-record-button" class="rm4ed-new-record-button navbar-text"><a><img style="margin-left:-22px; padding:5px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAT0lEQVQ4y+2RSw4AMAQFadz/yrqSCNX0se3sNIxPiYawD1RVnwuZOQluRHkSVN0tMebY+0K6e5mx0BWiRJCDnZDu8eAVKr6gKfA/MZ5gzAYUNRwmN05++wAAAABJRU5ErkJggg=="><span tabindex="0" title="New Record" style="font-weight:bold" aria-label="New Record">NEW RECORD</span></a></div>');
+				//alert($("#custom-new-record-button").length);
+				$(".Searchbar-logo-toggle").append('<div id="custom-new-record-button" class="rm4ed-new-record-button navbar-text"><a><img style="margin-left:-22px; padding:5px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAT0lEQVQ4y+2RSw4AMAQFadz/yrqSCNX0se3sNIxPiYawD1RVnwuZOQluRHkSVN0tMebY+0K6e5mx0BWiRJCDnZDu8eAVKr6gKfA/MZ5gzAYUNRwmN05++wAAAABJRU5ErkJggg=="><span tabindex="0" title="New Record" style="font-weight:bold" aria-label="New Record">NEW RECORD</span></a></div>');
 					
 				};
-				
-				
 				// remove the object_selector button and replace with phantom div.
 				if(!$("#rm4ed-phantom-object-selector").length){
-				$("button[title='Record']").css("display", "none");
-				$("button[title='Record']").after("<div id='rm4ed-phantom-object-selector' style='width: 96px; height: 32px; padding-left: 10px; padding-right: 10px;'></div>");
+					$("button[title='Record']").css("display", "none");
+					$("button[title='Record']").after("<div id='rm4ed-phantom-object-selector' style='width: 96px; height: 32px; padding-left: 10px; padding-right: 10px;'></div>");
 				};
 				
 				// hide unwanted items from the option selector
-				$("#searchBuilder").css("display", "none");
-				$("a[title='Filter']").parent().css("display", "none"); // this is different because there is a duplicate id.
-				$("#options").css("display", "none");
-				
+				if(!$("#searchBuilder").css("display")=="none"){
+					$("#searchBuilder").css("display", "none");
+					$("a[title='Filter']").parent().css("display", "none"); // this is different because there is a duplicate id.
+					$("#options").css("display", "none");
+				}
 				
 				// the rm4ed universal search input box and remove hide the standard search query box.
 				if(!$("#rm4ed-global-search-input").length){
 					$("#global-search-input").after('<input title="Enter Search Query >" class="clearable x" id="rm4ed-global-search-input" aria-label="< Enter Search Query >" type="search" placeholder="Enter your search" autocomplete="off">');
 					$("#global-search-input").css("display", "none");
 				};
-
-				
-				if(!$(".filter-by-record-type-was-opened").length){
-					//alert("Calling this once");
-					if(!$("[id*='overlay_SearchRecordTypeFilterModal']").length){
-					
-						$("#hprm-dynamic-search-modal").addClass("filter-by-record-type-was-opened");
-
-						//alert("Hey over there!");
-						$("#rm4ed-folders-only-checkbox").css("background-color", "lime");
-						$("a[title='Filter Record Types']").css("background-color", "lime");
-
-						// Open the Record Type Filter overlay. This will trigger knockoutjs to populate the model view.  No, I can't find another way to do it!
-						$("a[title='Filter Record Types']").trigger("click");
-
-					
-					};
-					
-				}
-				
-	
-				
 			}
 			else if (mutation.type === 'attributes') {
 				//console.log('The ' + mutation.attributeName + ' attribute was modified.');
 			}
 		}
 	};
-
+	
 	// Create an observer instance linked to the callback function
 	const bodyContentObserver = new MutationObserver(bodyContentObserverCallback);
-
 	// Start observing the target node for configured mutations
-	bodyContentObserver.observe(document.getElementById('bodyContent'), config);
+	addObserverIfDesiredNodeAvailable(document.getElementById('bodyContent'), bodyContentObserver);
 
-
-	// Later, you can stop observing
 	//bodyContentObserver.disconnect();
 	
-	// END -- OBSERVER FOR #bodyContent
-
-		
-	// CREATE OBSERVER FOR CHANGES TO THE #hprm-dynamic-search-modal <DIV>
 	// Callback function to execute when mutations are observed
 	const hprmDynamicModalObserverCallback = function(mutationsList, hprmDynamicModalObserver) {
 		// Use traditional 'for loops' for IE 11
@@ -98,28 +76,20 @@ $(document).ready(function(){
 				
 			}
 			else if (mutation.type === 'attributes') {
-			console.log('The ' + mutation.attributeName + ' attribute was modified.');
+			//console.log('The ' + mutation.attributeName + ' attribute was modified.');
 			}
 		}
 	};
 
 	// Create an observer instance linked to the callback function
 	const hprmDynamicModalObserver = new MutationObserver(hprmDynamicModalObserverCallback);
-
 	// Start observing the target node for configured mutations
-	hprmDynamicModalObserver.observe(document.getElementById('hprm-dynamic-modal'), config);
-
-
-	// Later, you can stop observing
+	addObserverIfDesiredNodeAvailable(document.getElementById('hprm-dynamic-modal'), hprmDynamicModalObserver);
 	//hprmDynamicModalObserver.disconnect();
-	
-	// END -- OBSERVER FOR  #hprm-dynamic-modal
-	
-
 	
 	
 	// add splsh screen
-	$("body").prepend("<div id='splash-screen'><div id='custom-loader' class='loader'></div></div>");
+	//$("body").prepend("<div id='splash-screen'><div id='custom-loader' class='loader'></div></div>");
 	});
 
 	// add custom stylesheets AFTER the in-built custom.css
@@ -183,22 +153,22 @@ $(document).ready(function(){
 					event.preventDefault();
 				   }
 				})
-   	});
-	
-	// "click" event for hprm-dynamic-search-modal Record button
-	$(document).on('click', "#custom-new-record-button", function (){
-		$("a[title='New Record']").trigger("click");
-	})
+		});
 
-	// "click" event for logo (got to home)
-	$(document).on('click', ".navbar-logofix", function (){
-		$("div.tabbable").find("a[title='Home']").trigger("click");
-	})
-		
-	// "click" event for Advanced Search button - Open Search
-	$(document).on('click', "#rm4ed-advanced-search", function (){
-		$("a[title='Record']").trigger("click");
-		$("#SearchForm_1 > a").trigger("click");
-	})
-		
-});
+		// "click" event for hprm-dynamic-search-modal Record button
+		$(document).on('click', "#custom-new-record-button", function (){
+			$("a[title='New Record']").trigger("click");
+		})
+
+		// "click" event for logo (got to home)
+		$(document).on('click', ".navbar-logofix", function (){
+			$("div.tabbable").find("a[title='Home']").trigger("click");
+		})
+
+		// "click" event for Advanced Search button - Open Search
+		$(document).on('click', "#rm4ed-advanced-search", function (){
+			$("a[title='Record']").trigger("click");
+			$("#SearchForm_1 > a").trigger("click");
+		})
+
+	});
