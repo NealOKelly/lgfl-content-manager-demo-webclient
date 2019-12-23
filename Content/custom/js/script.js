@@ -27,8 +27,7 @@ $(document).ready(function(){
 				$("#splash-screen").fadeOut(5000);
 				
 				if(!$("#custom-new-record-button").length){
-				//alert($("#custom-new-record-button").length);
-				$(".Searchbar-logo-toggle").append('<div id="custom-new-record-button" class="rm4ed-new-record-button navbar-text"><a><img style="margin-left:-22px; padding:5px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAT0lEQVQ4y+2RSw4AMAQFadz/yrqSCNX0se3sNIxPiYawD1RVnwuZOQluRHkSVN0tMebY+0K6e5mx0BWiRJCDnZDu8eAVKr6gKfA/MZ5gzAYUNRwmN05++wAAAABJRU5ErkJggg=="><span tabindex="0" title="New Record" style="font-weight:bold" aria-label="New Record">NEW RECORD</span></a></div>');
+					$(".Searchbar-logo-toggle").append('<div id="custom-new-record-button" class="rm4ed-new-record-button navbar-text"><a><img style="margin-left:-22px; padding:5px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAT0lEQVQ4y+2RSw4AMAQFadz/yrqSCNX0se3sNIxPiYawD1RVnwuZOQluRHkSVN0tMebY+0K6e5mx0BWiRJCDnZDu8eAVKr6gKfA/MZ5gzAYUNRwmN05++wAAAABJRU5ErkJggg=="><span tabindex="0" title="New Record" style="font-weight:bold" aria-label="New Record">NEW RECORD</span></a></div>');
 					
 				};
 				// remove the object_selector button and replace with phantom div.
@@ -49,6 +48,12 @@ $(document).ready(function(){
 					$("#global-search-input").after('<input title="Enter Search Query >" class="clearable x" id="rm4ed-global-search-input" aria-label="< Enter Search Query >" type="search" placeholder="Enter your search" autocomplete="off">');
 					$("#global-search-input").css("display", "none");
 				};
+				
+				// style error messages
+				if($(".field-error-display")){
+					 $(".field-error-display").css("color", "#33cccc !important");
+					 }
+				
 			}
 			else if (mutation.type === 'attributes') {
 				//console.log('The ' + mutation.attributeName + ' attribute was modified.');
@@ -71,8 +76,14 @@ $(document).ready(function(){
 				
 				// hide "Filter" tab from search form.
 				if($("a[href='#formSearchFilter']").length){
-					$("a[href='#formSearchFilter']").css("display", "none");
+					$("a[href='#formSearchFilter']").parent().css("display", "none");
 				}
+				
+				// placeholder for customising the saved search form
+				if($("div[id*='overlay_SavedSearchForm']").length){
+					//$("div[id*='overlay_SavedSearchForm']").find("input[type='checkbox']").css("background-color", "lime");
+				}
+					
 				
 			}
 			else if (mutation.type === 'attributes') {
@@ -117,9 +128,26 @@ $(document).ready(function(){
 		$("#bodyContent").after(text);;
 	})
 
-	//Universal search
 	$(document).ready(function(){
-	
+		
+		// "click" event for logo (got to home)
+		$(document).on('click', ".navbar-logofix", function (){
+			$("div.tabbable").find("a[title='Home']").trigger("click");
+		})
+		
+		
+		// "click" event for Advanced Search button - Open Search
+		$(document).on('click', "#rm4ed-advanced-search", function (){
+			$("a[title='Record']").trigger("click");
+			$('#SearchForm_1 > a')[0].click();
+			
+		})
+		
+		// "click" event for hprm-dynamic-search-modal Record button
+		$(document).on('click', "#custom-new-record-button", function (){
+			$("a[title='New Record']").trigger("click");
+		})
+
 		// Populate the #global-search-input from the custom rm4ed search box
 		$(document).on('change', "#rm4ed-global-search-input", function (){
 			var str = $("#rm4ed-global-search-input").val();
@@ -131,6 +159,16 @@ $(document).ready(function(){
 			e.which = 50; // # Some key code value
 			e.keyCode = 50
 			$("#global-search-input").trigger(e);
+			
+			// control when Save Search button is displayed
+			if($("#global-search-input").val()=='content:"" Or anyWord:'){
+				//alert("Hellow World");
+				
+				$("#show-saved-searches").css("display", "none");
+			}
+			else{
+				$("#show-saved-searches").css("display", "inline-block");
+			}
 			
 			return false;
 		});
@@ -144,31 +182,18 @@ $(document).ready(function(){
 					$( ".global-search-btn" ).trigger( "click" );
         		}
 			}
-			// THIS STILL DOESN'T WORK AS INTENDED
-			// this handles the scenarion where the user has added search information and subsequently deleted it from the search box.
-			$(document).on('click', ".global-search-btn", function (){
-				alert($("#global-search-input").val());
-				if($("#global-search-input").val()=='content:"" Or anyWord:'){
-					$("#global-search-input").val("");
-					event.preventDefault();
-				   }
-				})
-		});
-
-		// "click" event for hprm-dynamic-search-modal Record button
-		$(document).on('click', "#custom-new-record-button", function (){
-			$("a[title='New Record']").trigger("click");
-		})
-
-		// "click" event for logo (got to home)
-		$(document).on('click', ".navbar-logofix", function (){
-			$("div.tabbable").find("a[title='Home']").trigger("click");
-		})
-
-		// "click" event for Advanced Search button - Open Search
-		$(document).on('click', "#rm4ed-advanced-search", function (){
-			$("a[title='Record']").trigger("click");
-			$("#SearchForm_1 > a").trigger("click");
-		})
-
+		// THIS STILL DOESN'T WORK AS INTENDED
+		// The issue is that there is a second event hndler (in knoutjs that will proceed with the click.  The answer would be to enclose the button in a new div by amending GlobalSearchPanel.tmpl.html
+		// We could then use this kind of idea to trap the venet at the div level.  https://www.bennadel.com/blog/1751-jquery-live-method-and-event-bubbling.htm
+		// this handles the scenarion where the user has added search information and subsequently deleted it from the search box.
+		  $(".global-search-btn").click(function(e){
+    		//alert('clicked!');
+  			if($("#global-search-input").val()=='content:"" Or anyWord:'){
+				//alert('Query is crud, do not search.');
+				$("#global-search-input").val("");
+				e.preventDefault();
+				e.stopPropagation();
+				}
+		  });
 	});
+});
