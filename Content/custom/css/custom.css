@@ -146,9 +146,6 @@ div.div-profile-header > ul.dropdown-menu > li:nth-child(4){
 	display: none !important;
 }
 
-button.btn-properties {
-	color: #33cccc;
-}
 
 /* Hide tabbing mechanism */
 div.as-spa-body>div>div.tabbable {
@@ -171,7 +168,36 @@ div.as-spa-body>div>div.tabbable {
 
 */
 
+/*  Hide unwanted items from the left-hand panel int he record context.*/
+[title='Checked Out Records']{
+    display: none;
+}
 
+[title='Created Records']{
+    display: none;
+}
+[title='Browse via User Label']{
+    display: none;
+}
+hr.listPadding.listPaddingRight{
+	display: none;
+}
+.command-panel-padding-left.listPaddingRight.listPaddingBottom{
+	display: none;
+}
+
+/* Hide unwanted options at the record level*/
+#locationMenu{
+	display: none;
+}
+
+#requestMenu{
+	display: none;
+}
+
+#workflowMenu{
+	display: none;
+}
 
 /* RM4ED-specific styling */
 
