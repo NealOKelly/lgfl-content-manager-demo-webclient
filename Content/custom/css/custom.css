@@ -146,12 +146,16 @@ div.div-profile-header > ul.dropdown-menu > li:nth-child(4){
 	display: none !important;
 }
 
+button.btn-properties {
+	color: #33cccc;
+}
+
 /* Hide tabbing mechanism */
 div.as-spa-body>div>div.tabbable {
 	display: none;
 }
 
-/* Hide query - this is not a SQL editor, it's a user interface. */
+/* Hide query - this is not a SQL editor, it's a user interface. 
 .itemlist-header{
 	height: auto !important;
 }
@@ -165,7 +169,7 @@ div.as-spa-body>div>div.tabbable {
 	padding-top: 10px;
 }
 
-
+*/
 
 
 
@@ -228,10 +232,56 @@ textarea{
   color: #cececf;
 }
 
+.btn-primary{
+	background-color: #33cccc;;
+}
+
+.button-primary:hover,
+.btn-primary:hover{
+	background-color: #33cccc;
+}
+
+.btn.btn-primary, 
+.open > .dropdown-toggle.btn-primary{
+	background-color: #33cccc;
+	border-color: #33cccc;
+}
+
 .btn.btn-primary:hover, 
 .open > .dropdown-toggle.btn-primary:hover{
 	background-color: #33cccc;
 }
+
+.btn.btn-primary:focus, 
+.open > .dropdown-toggle.btn-primary:focus{
+	background-color: #33cccc;
+	border-color: #33cccc;
+}
+
+.btn.btn-primary:active, 
+.open > .dropdown-toggle.btn-primary:active{
+	background-color: #33cccc;
+}
+
+.btn.btn-primary:active, 
+.btn.btn-primary:focus:active,
+.open > .dropdown-toggle.btn-primary:active,
+.open > .dropdown-toggle.btn-primary:focus:active{
+	background-color: #33cccc;
+}
+
+.btn.button-primary{
+	background-color: #33cccc;
+}
+
+.btn.button-primary:hover{
+	border-color: #33cccc;
+}
+
+.button-accent:focus, .button-primary:focus{
+	color: #fff;
+}
+
 
 /* RECORDS PANEL context */
 .HPRM-Record-Action-Item:hover{
@@ -244,16 +294,50 @@ textarea{
 .panel-header{
 	background-color: #33cccc;
 }
+.gtreetable .node-selected .node-container{
+	border-left: 4px solid #33cccc;
+	background-color: rgba(54, 204, 204, 0.05);
+}
+
+.node .node-collapsed .node-saved .nodehovered{
+	rgba(54, 204, 204, 0.05);
+}
+
+.command-panel .btn:focus{
+	border: 1px solid #419ffd !important;
+}
 
 /* NEW RECORD context */
+a.cancel {
+	color: #33cccc;
+}
+.itempickerBorder{
+	border: solid 1px #33cccc !important;
+}
 
 .picker-result-expansion{
 	border-color: #33cccc;
 }
 
+.input-group-addon{
+	border: 1px solid #33cccc;
+}
+
 input[type='text']{
 	border-color: #33cccc;
 }
+
+.field-error-display{
+	color: #33cccc !important;
+}
+
+/* FORM SEARCH context */
+.savedSearchOvrLy div > .nav-tabs > li.active, 
+.searchEditorOverlay div > .nav-tabs > li.active{
+	border-bottom: #33cccc 4px solid !important;
+}
+
+
 
 
 /*

@@ -50,9 +50,13 @@ $(document).ready(function(){
 				};
 				
 				// style error messages
-				if($(".field-error-display")){
+				if($(".field-error-display").length){
 					 $(".field-error-display").css("color", "#33cccc !important");
 					 }
+				/style record properties link
+				if($(".btn-properties").length){
+					$(".btn-properties").css("color", "#33cccc");
+				}
 				
 			}
 			else if (mutation.type === 'attributes') {
@@ -100,7 +104,7 @@ $(document).ready(function(){
 	
 	
 	// add splsh screen
-	//$("body").prepend("<div id='splash-screen'><div id='custom-loader' class='loader'></div></div>");
+	$("body").prepend("<div id='splash-screen'><div id='custom-loader' class='loader'></div></div>");
 	});
 
 	// add custom stylesheets AFTER the in-built custom.css
