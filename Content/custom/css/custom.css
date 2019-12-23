@@ -114,10 +114,17 @@ button.btn.global-search-finder-btn.dropdown-toggle.option_selector.pull-left:fo
 }
 
 /*This button replaces the main menu*/
-#custom-new-record-button > span{
+#custom-new-record-button>a{
 	color: white;
+	margin-left: 30px;
 }
 
+#custom-new-record-button>a:hover,
+#custom-new-record-button>a:focus,
+#custom-new-record-button>a:active{
+	color: white;
+	text-decoration: none;
+}
 .btn .global-search-finder-btn .dropdown-toggle .object_selector .pull-left{
 	display: none !important;
 }

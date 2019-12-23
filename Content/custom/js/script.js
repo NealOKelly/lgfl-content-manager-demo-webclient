@@ -53,7 +53,7 @@ $(document).ready(function(){
 				if($(".field-error-display").length){
 					 $(".field-error-display").css("color", "#33cccc !important");
 					 }
-				/style record properties link
+				//style record properties link
 				if($(".btn-properties").length){
 					$(".btn-properties").css("color", "#33cccc");
 				}
@@ -147,7 +147,7 @@ $(document).ready(function(){
 			
 		})
 		
-		// "click" event for hprm-dynamic-search-modal Record button
+		// "click" event for New Record button
 		$(document).on('click', "#custom-new-record-button", function (){
 			$("a[title='New Record']").trigger("click");
 		})
