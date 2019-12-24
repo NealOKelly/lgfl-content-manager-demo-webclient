@@ -28,6 +28,20 @@ $(document).ready(function(){
 					$("#splash-screen").fadeOut(3000);
 				}
 				
+				// Rename Save Search button
+				if($("button[title='Save']").length){
+					//alert("The save search button has appeaerd");
+					if($("#show-saved-searches>span").html()=="Save"){
+						$("#show-saved-searches").attr("title", "Save Search");
+						$("#show-saved-searches>span").html("Save Search");	
+						$("#show-saved-searches>span").attr("title", "Save Search");
+						$("#show-saved-searches>span").attr("aria-label", "Save Search");
+					}
+				}
+				
+				// Save Search button visibility
+				
+				
 				if(!$("#custom-new-record-button").length){
 					$(".Searchbar-logo-toggle").append('<div id="custom-new-record-button" class="rm4ed-new-record-button navbar-text"><a><img style="margin-left:-22px; padding:5px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAT0lEQVQ4y+2RSw4AMAQFadz/yrqSCNX0se3sNIxPiYawD1RVnwuZOQluRHkSVN0tMebY+0K6e5mx0BWiRJCDnZDu8eAVKr6gKfA/MZ5gzAYUNRwmN05++wAAAABJRU5ErkJggg=="><span tabindex="0" title="New Record" style="font-weight:bold" aria-label="New Record">NEW RECORD</span></a></div>');
 					
