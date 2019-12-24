@@ -30,7 +30,6 @@ $(document).ready(function(){
 				
 				// Rename Save Search button
 				if($("button[title='Save']").length){
-					//alert("The save search button has appeaerd");
 					if($("#show-saved-searches>span").html()=="Save"){
 						$("#show-saved-searches").attr("title", "Save Search");
 						$("#show-saved-searches>span").html("Save Search");	
@@ -39,19 +38,23 @@ $(document).ready(function(){
 					}
 				}
 				
-				// Save Search button visibility
-				
-				
 				if(!$("#custom-new-record-button").length){
 					$(".Searchbar-logo-toggle").append('<div id="custom-new-record-button" class="rm4ed-new-record-button navbar-text"><a><img style="margin-left:-22px; padding:5px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAT0lEQVQ4y+2RSw4AMAQFadz/yrqSCNX0se3sNIxPiYawD1RVnwuZOQluRHkSVN0tMebY+0K6e5mx0BWiRJCDnZDu8eAVKr6gKfA/MZ5gzAYUNRwmN05++wAAAABJRU5ErkJggg=="><span tabindex="0" title="New Record" style="font-weight:bold" aria-label="New Record">NEW RECORD</span></a></div>');
 					
 				};
-				// remove the object_selector button and replace with phantom div.
+				// Hide the object_selector button and replace with phantom div.
 				if(!$("#rm4ed-phantom-object-selector").length){
-					$("button[title='Record']").css("display", "none");
-					$("button[title='Record']").after("<div id='rm4ed-phantom-object-selector' style='width: 96px; height: 32px; padding-left: 10px; padding-right: 10px;'></div>");
+					$("button.object_selector").css("display", "none");
+					$("button.object_selector").after("<div id='rm4ed-phantom-object-selector' style='width: 96px; height: 32px; padding-left: 10px; padding-right: 10px;'></div>");
 				};
-				
+
+				// If the search context has changed, set it back to "Record".
+				if($("button.object_selector").length){
+					if($("button.object_selector").prop("title")!="Record"){
+						$("button.object_selector").parent().find("a[title='Record']").trigger("click");
+					}
+				}
+		
 				// hide unwanted items from the option selector
 				if(!$("#searchBuilder").css("display")=="none"){
 					$("#searchBuilder").css("display", "none");
@@ -202,6 +205,10 @@ $(document).ready(function(){
 					$( ".global-search-btn" ).trigger( "click" );
         		}
 			}
+			
+			
+			
+			
 		// THIS STILL DOESN'T WORK AS INTENDED
 		// The issue is that there is a second event hndler (in knoutjs that will proceed with the click.  The answer would be to enclose the button in a new div by amending GlobalSearchPanel.tmpl.html
 		// We could then use this kind of idea to trap the venet at the div level.  https://www.bennadel.com/blog/1751-jquery-live-method-and-event-bubbling.htm
