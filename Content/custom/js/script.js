@@ -13,6 +13,18 @@ function addObserverIfDesiredNodeAvailable(desiredNode, observerName) {
 	observerName.observe(desiredNode, config);
 };
 
+// This function takes the content of the RM4ED Universal Search box and populated the hidden global-search-input box
+function updateGlobalSearchInput(){
+	var str = $("#rm4ed-global-search-input").val();
+	var strSearchQuery = 'content:"'+str+'" Or anyWord:'+str;
+	$("#global-search-input").val(strSearchQuery);
+
+	// Simulate a keydown event in the global-search-input box.  This tricks knockoutjs into updating the view model.
+	var e = jQuery.Event("keydown");
+	e.which = 50; // # Some key code value
+	e.keyCode = 50
+	$("#global-search-input").trigger(e);
+}
 
 $(document).ready(function(){
 
@@ -67,6 +79,21 @@ $(document).ready(function(){
 					$("#global-search-input").after('<input title="Enter Search Query >" class="clearable x" id="rm4ed-global-search-input" aria-label="< Enter Search Query >" type="search" placeholder="Enter your search" autocomplete="off">');
 					$("#global-search-input").css("display", "none");
 				};
+				
+				
+				// Update the global standard search box with the contents of the rm4ed univeral search
+				// This is required because otherwise users may click on the search button and resurn results that do not reflect what was in the search box
+				// THIS CODE IS NOT PARTICULARLY PERFORMANT.  POTENTIALLY I COULD SET UP A LOWER LEVEL MUTATION OBSERVER.
+				if($(".HPRM-search-list-header").length){
+						var str = $(".HPRM-search-list-header>span").html()
+						if((str == "Query: 'favorite'") || (str == "Saved Searches - public") || (str == "Query: 'owner:[default:Me]'") || (str == "Query: 'myDocuments'"))
+							{
+							$(".HPRM-search-list-header>span").addClass("globalSearchInputUpdated");
+							if($(".HPRM-search-list-header>span.globalSearchInputUpdated").length){
+							updateGlobalSearchInput();										
+							}
+						}
+					}
 				
 				// style error messages
 				if($(".field-error-display").length){
@@ -155,6 +182,7 @@ $(document).ready(function(){
 		
 		// "click" event for logo (got to home)
 		$(document).on('click', ".navbar-logofix", function (){
+			updateGlobalSearchInput();
 			$("div.tabbable").find("a[title='Home']").trigger("click");
 		})
 		
@@ -173,41 +201,21 @@ $(document).ready(function(){
 
 		// Populate the #global-search-input from the custom rm4ed search box
 		$(document).on('change', "#rm4ed-global-search-input", function (){
-			var str = $("#rm4ed-global-search-input").val();
-        	var strSearchQuery = 'content:"'+str+'" Or anyWord:'+str;
-			$("#global-search-input").val(strSearchQuery);
+
+			updateGlobalSearchInput()
 			
-			// Simulate a keydown event in the global-search-input box.  This tricks knockoutjs into updating the view model.
-			var e = jQuery.Event("keydown");
-			e.which = 50; // # Some key code value
-			e.keyCode = 50
-			$("#global-search-input").trigger(e);
-			
-			// control when Save Search button is displayed
-			if($("#global-search-input").val()=='content:"" Or anyWord:'){
-				//alert("Hellow World");
-				
-				$("#show-saved-searches").css("display", "none");
-			}
-			else{
-				$("#show-saved-searches").css("display", "inline-block");
-			}
-			
-			return false;
 		});
 		
 		//submit a search when user presses the enter key inside the search box
 		$(document).on("keyup", "#rm4ed-global-search-input", function(e){
 			$("#rm4ed-global-search-input").trigger("change");	
         	if(e.which == 13){
+			updateGlobalSearchInput();
 			var x = $("#rm4ed-global-search-input").val().length;
 			if(x>0){
 					$( ".global-search-btn" ).trigger( "click" );
         		}
 			}
-			
-			
-			
 			
 		// THIS STILL DOESN'T WORK AS INTENDED
 		// The issue is that there is a second event hndler (in knoutjs that will proceed with the click.  The answer would be to enclose the button in a new div by amending GlobalSearchPanel.tmpl.html
@@ -217,7 +225,8 @@ $(document).ready(function(){
     		//alert('clicked!');
   			if($("#global-search-input").val()=='content:"" Or anyWord:'){
 				//alert('Query is crud, do not search.');
-				$("#global-search-input").val("");
+				$("#global-search-input").val(null);
+				alert($("#global-search-input").val());
 				e.preventDefault();
 				e.stopPropagation();
 				}
