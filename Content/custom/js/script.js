@@ -85,13 +85,14 @@ $(document).ready(function(){
 				// This is required because otherwise users may click on the search button and resurn results that do not reflect what was in the search box
 				// THIS CODE IS NOT PARTICULARLY PERFORMANT.  POTENTIALLY I COULD SET UP A LOWER LEVEL MUTATION OBSERVER.
 				if($(".HPRM-search-list-header").length){
+						updateGlobalSearchInput();	
 						var str = $(".HPRM-search-list-header>span").html()
 						if((str == "Query: 'favorite'") || (str == "Saved Searches - public") || (str == "Query: 'owner:[default:Me]'") || (str == "Query: 'myDocuments'"))
 							{
-							$(".HPRM-search-list-header>span").addClass("globalSearchInputUpdated");
-							if($(".HPRM-search-list-header>span.globalSearchInputUpdated").length){
-							updateGlobalSearchInput();										
-							}
+					//		$(".HPRM-search-list-header>span").addClass("globalSearchInputUpdated");
+					//		if($(".HPRM-search-list-header>span.globalSearchInputUpdated").length){
+					//			updateGlobalSearchInput();										
+					//		}
 						}
 					}
 				
@@ -209,10 +210,10 @@ $(document).ready(function(){
 		//submit a search when user presses the enter key inside the search box
 		$(document).on("keyup", "#rm4ed-global-search-input", function(e){
 			$("#rm4ed-global-search-input").trigger("change");	
-        	if(e.which == 13){
-			updateGlobalSearchInput();
-			var x = $("#rm4ed-global-search-input").val().length;
-			if(x>0){
+        	updateGlobalSearchInput();
+			if(e.which == 13){
+				var x = $("#rm4ed-global-search-input").val().length;
+				if(x>0){
 					$( ".global-search-btn" ).trigger( "click" );
         		}
 			}
