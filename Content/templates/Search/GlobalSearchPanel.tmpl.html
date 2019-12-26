@@ -55,9 +55,14 @@
                                 <!-- /ko -->
                             </div>
                             <!-- Pull right will bring it across on the same line as the search field. -->
+							
+							<!-- RM4ED - Here we add a div that enables us to intercept the global-search-btn click event as it bubbled up the DOM. -->
+							<div id="rm4ed-intercept-global-search-button-click-narrow" style="display: inline-block;">
                             <button type="submit" class="btn button-primary global-search-btn " data-bind="click: executeSearch, clickBubble: false, attr: {title: HP.HPTRIM.Messages.web_search , 'aria-label': HP.HPTRIM.Messages.web_search }" style="box-shadow:none;min-width:10px;">
                                 <div class="search_24" style="height: 24px; width: 24px;" data-bind="attr: {title: HP.HPTRIM.Messages.web_search , 'aria-label': HP.HPTRIM.Messages.web_search }"></div>
                             </button>
+							</div>
+							<!-- RM4ED - End. -->
 							
 							<div class="btn-group" style="float:left">
 								<button type="button" id="rm4ed-advanced-search" class="btn global-search-finder-btn option_selector pull-left" style="text-transform:uppercase;box-shadow:none;margin-right:3px;margin-bottom:1px;">
@@ -151,9 +156,13 @@
                             <!-- /ko -->
                         </div>
                         <!-- Pull right will bring it across on the same line as the search field. -->
+						
+						<!-- RM4ED - Here we add a div that enables us to intercept the global-search-btn click event as it bubbled up the DOM. -->
+						<div id="rm4ed-intercept-global-search-button-click-wide" style="display: inline-block;">
                         <button type="submit" class="btn button-primary global-search-btn " data-bind="click: executeSearch, clickBubble: false, attr: {title: HP.HPTRIM.Messages.web_search , 'aria-label': HP.HPTRIM.Messages.web_search }" style="box-shadow:none; margin:0 0 3px -3px !important">
                             <div class="search_24" style="height: 24px; width: 24px;" data-bind="attr: {title: HP.HPTRIM.Messages.web_search , 'aria-label': HP.HPTRIM.Messages.web_search }"></div>
                         </button>
+						<!-- RM4ED - End. -->
 
                         <!-- ko if: saveSearchButtonEnabled() -->
                         <button type="button" style="border-left:1px solid #8b8b8b" id="show-saved-searches" data-bind="click: saveSearch, attr:{title: HP.HPTRIM.Messages.web_save,'aria-label': HP.HPTRIM.Messages.web_save, class: 'btn save-search-btn if-narrow-less-margin'}">
